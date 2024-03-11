@@ -8,6 +8,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
+#include "../libft/libft.h"
 #include "../MLX42/include/MLX42/MLX42.h"
 #define WIDTH 320
 #define HEIGHT 200

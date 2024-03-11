@@ -15,8 +15,52 @@ static void ft_error(void)
 // 	printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
 // }
 
+void render_matrix(char **map, mlx_image_t* img)
+{
+	int i = 0;
+	int j = 0;
+	int x = 0;
+	int y = 0;
+
+	while(y < HEIGHT)
+	{
+		// while((x < WIDTH) && (map && *map[i]))
+		if(ft_isalnum(*map[i]))
+		{
+			if(map[i][j] && map[i][j] == '1')
+				mlx_put_pixel(img, x, y, 0xFFFF00FF);
+			else if (map[i][j] && map[i][j] == '0')
+				mlx_put_pixel(img, x, y, 0xFF0000FF);
+			else
+				mlx_put_pixel(img, x, y, 0x000000FF);	
+			x++;
+			j++;
+		}
+		y++;
+		map++;
+		x = 0;
+		j = 0;
+	}
+}
+
 int32_t	main(void)
 {
+	char *test[] = {
+		"1111111111111781111111111",
+		"1000000000110000000000001",
+		"1011000001110000000000001",
+		"1001000000000000000000001",
+"111111111011000001110000000000001",
+"100000000011000001110111111111111",
+"11110111111111011100000010001",
+"11110111111111011101010010001",
+"11000000110101011100000010001",
+"10000000000000001100000010001",
+"10000000000000001101010010001",
+"Q1000001110101011111011110N0111",
+"A1110111 1110101 101111010001",
+"Z1111111 1111111 111111111111"
+};
 
 	// MLX allows you to define its core behaviour before startup.
 	mlx_set_setting(MLX_MAXIMIZED, false);
@@ -32,18 +76,21 @@ int32_t	main(void)
 		ft_error();
 
 	// Even after the image is being displayed, we can still modify the buffer.
-	int x = 0;
-	int y = 0;
-	while(y < HEIGHT)
-	{
-		while(x < WIDTH)
-		{
-			mlx_put_pixel(img, x, y, 0xFFFF00FF);
-			x++;
-		}
-		y++;
-		x = 0;
-	}
+
+	render_matrix(test, img);
+
+	// int x = 0;
+	// int y = 0;
+	// while(y < HEIGHT)
+	// {
+	// 	while(x < WIDTH)
+	// 	{
+	// 		mlx_put_pixel(img, x, y, 0xFFFF00FF);
+	// 		x++;
+	// 	}
+	// 	y++;
+	// 	x = 0;
+	// }
 
 	// Register a hook and pass mlx as an optional param.
 	// NOTE: Do this before calling mlx_loop!
