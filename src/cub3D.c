@@ -15,6 +15,26 @@ static void ft_error(void)
 // 	printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
 // }
 
+void put_block(mlx_image_t* img, int x, int y, uint32_t color)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+
+	while(j < 10)
+	{
+		while(i < 10)
+		{
+			mlx_put_pixel(img, x + i, y + i, color);
+			i++;
+		}
+		j++;
+		i = 0;
+	}
+}
+
 void render_matrix(char **map, mlx_image_t* img)
 {
 	int i = 0;
@@ -25,41 +45,47 @@ void render_matrix(char **map, mlx_image_t* img)
 	while(y < HEIGHT)
 	{
 		// while((x < WIDTH) && (map && *map[i]))
-		if(ft_isalnum(*map[i]))
+		if(*map)
 		{
-			if(map[i][j] && map[i][j] == '1')
-				mlx_put_pixel(img, x, y, 0xFFFF00FF);
-			else if (map[i][j] && map[i][j] == '0')
-				mlx_put_pixel(img, x, y, 0xFF0000FF);
-			else
-				mlx_put_pixel(img, x, y, 0x000000FF);	
-			x++;
-			j++;
+			while(map[i][j])
+			{
+				if(map[i][j] && map[i][j] == '1')
+					put_block(img, x, y, 0xFFFF00FF);
+				else if (map[i][j] && map[i][j] == '0')
+					put_block(img, x, y, 0xFF0000FF);
+				else if (!ft_isalpha(map[i][j]))
+					put_block(img, x, y, 0x00000000);
+				else 
+					put_block(img, x, y, 0x89CFF0);
+				x+=10;
+				j++;
+			}
+			y+=10;
+			map++;
+			x = 0;
+			j = 0;
 		}
 		y++;
-		map++;
-		x = 0;
-		j = 0;
 	}
 }
 
 int32_t	main(void)
 {
 	char *test[] = {
-		"1111111111111781111111111",
-		"1000000000110000000000001",
-		"1011000001110000000000001",
-		"1001000000000000000000001",
+"       1111111111111781111111111",
+"       1000000000110000000000001",
+"       1011000001110000000000001",
+"       1001000000000000000000001",
 "111111111011000001110000000000001",
 "100000000011000001110111111111111",
-"11110111111111011100000010001",
-"11110111111111011101010010001",
-"11000000110101011100000010001",
-"10000000000000001100000010001",
-"10000000000000001101010010001",
-"Q1000001110101011111011110N0111",
-"A1110111 1110101 101111010001",
-"Z1111111 1111111 111111111111"
+"11110111111111011100000010001    ",
+"11110111111111011101010010001    ",
+"11000000110101011100000010001    ",
+"10000000000000001100000010001    ",
+"10000000000000001101010010001    ",
+"11000001110101011111011110N0111  ",
+"11110111 1110101 101111010001    ",
+"11111111 1111111 111111111111    ",
 };
 
 	// MLX allows you to define its core behaviour before startup.
