@@ -23,11 +23,23 @@ void put_block(mlx_image_t* img, int x, int y, uint32_t color)
 	i = 0;
 	j = 0;
 
-	while(j < 10)
+	while(j <= 16)
 	{
-		while(i < 10)
+		while(i <= 16)
 		{
-			mlx_put_pixel(img, x + i, y + i, color);
+	// int x = 0;
+	// int y = 0;
+	// while(y < HEIGHT)
+	// {
+	// 	while(x < WIDTH)
+	// 	{
+	// 		mlx_put_pixel(img, x, y, 0xFFFF00FF);
+	// 		x++;
+	// 	}
+	// 	y++;
+	// 	x = 0;
+	// }
+			mlx_put_pixel(img, x + j, y + i, color);
 			i++;
 		}
 		j++;
@@ -57,10 +69,10 @@ void render_matrix(char **map, mlx_image_t* img)
 					put_block(img, x, y, 0x00000000);
 				else 
 					put_block(img, x, y, 0x89CFF0);
-				x+=10;
+				x+=16;
 				j++;
 			}
-			y+=10;
+			y+=16;
 			map++;
 			x = 0;
 			j = 0;
@@ -72,10 +84,10 @@ void render_matrix(char **map, mlx_image_t* img)
 int32_t	main(void)
 {
 	char *test[] = {
-"       1111111111111781111111111",
-"       1000000000110000000000001",
-"       1011000001110000000000001",
-"       1001000000000000000000001",
+"        1111111111111781111111111",
+"        1000000000110000000000001",
+"        1011000001110000000000001",
+"        1001000000000000000000001",
 "111111111011000001110000000000001",
 "100000000011000001110111111111111",
 "11110111111111011100000010001    ",
@@ -97,26 +109,13 @@ int32_t	main(void)
 	/* Do stuff */
 
 	// Create and display the image.
-	mlx_image_t* img = mlx_new_image(mlx, 320, 200);
+	mlx_image_t* img = mlx_new_image(mlx, 800, 600);
 	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
 		ft_error();
 
 	// Even after the image is being displayed, we can still modify the buffer.
 
 	render_matrix(test, img);
-
-	// int x = 0;
-	// int y = 0;
-	// while(y < HEIGHT)
-	// {
-	// 	while(x < WIDTH)
-	// 	{
-	// 		mlx_put_pixel(img, x, y, 0xFFFF00FF);
-	// 		x++;
-	// 	}
-	// 	y++;
-	// 	x = 0;
-	// }
 
 	// Register a hook and pass mlx as an optional param.
 	// NOTE: Do this before calling mlx_loop!
