@@ -27,18 +27,6 @@ void put_block(mlx_image_t* img, int x, int y, uint32_t color)
 	{
 		while(i <= 16)
 		{
-	// int x = 0;
-	// int y = 0;
-	// while(y < HEIGHT)
-	// {
-	// 	while(x < WIDTH)
-	// 	{
-	// 		mlx_put_pixel(img, x, y, 0xFFFF00FF);
-	// 		x++;
-	// 	}
-	// 	y++;
-	// 	x = 0;
-	// }
 			mlx_put_pixel(img, x + j, y + i, color);
 			i++;
 		}
@@ -56,7 +44,6 @@ void render_matrix(char **map, mlx_image_t* img)
 
 	while(y < HEIGHT)
 	{
-		// while((x < WIDTH) && (map && *map[i]))
 		if(*map)
 		{
 			while(map[i][j])
