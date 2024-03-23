@@ -20,65 +20,17 @@ void controller(mlx_key_data_t keydata, void* param)
 	(void)param;
 
 	if (keydata.key == MLX_KEY_A && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-	{
-		if (keydata.action == MLX_PRESS)
-			puts("A ");
-		else if (keydata.action == MLX_REPEAT)
-		{
-			while (keydata.action == MLX_REPEAT && keydata.action != MLX_REPEAT)
-				puts("A ");
-		}
-	}
+		puts("A ");
 	else if (keydata.key == MLX_KEY_D && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-	{
-		if (keydata.action == MLX_PRESS)
-			puts("D ");
-		else if (keydata.action == MLX_REPEAT)
-		{
-			while (keydata.action == MLX_REPEAT && keydata.action != MLX_REPEAT)
-				puts("D ");
-		}
-	}
+		puts("D ");
 	else if (keydata.key == MLX_KEY_W && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-	{
-		if (keydata.action == MLX_PRESS)
-			puts("W ");
-		else if (keydata.action == MLX_REPEAT)
-		{
-			while (keydata.action == MLX_REPEAT && keydata.action != MLX_REPEAT)
-				puts("W ");
-		}
-	}
+		puts("W ");
 	else if (keydata.key == MLX_KEY_S && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-	{
-		if (keydata.action == MLX_PRESS)
-			puts("S ");
-		else if (keydata.action == MLX_REPEAT)
-		{
-			while (keydata.action == MLX_REPEAT && keydata.action != MLX_REPEAT)
-				puts("S ");
-		}
-	}
+		puts("S ");
 	else if (keydata.key == MLX_KEY_LEFT && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-	{
-		if (keydata.action == MLX_PRESS)
-			puts("LEFT ");
-		else if (keydata.action == MLX_REPEAT)
-		{
-			while (keydata.action == MLX_REPEAT && keydata.action != MLX_REPEAT)
-				puts("LEFT ");
-		}
-	}
+		puts("LEFT ");
 	else if (keydata.key == MLX_KEY_RIGHT && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-	{
-		if (keydata.action == MLX_PRESS)
-			puts("RIGHT ");
-		else if (keydata.action == MLX_REPEAT)
-		{
-			while (keydata.action == MLX_REPEAT && keydata.action != MLX_REPEAT)
-				puts("RIGHT ");
-		}
-	}
+		puts("RIGHT ");
 }
 
 void put_block(mlx_image_t* img, int x, int y, uint32_t color)
