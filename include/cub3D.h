@@ -15,8 +15,8 @@
 #define PI 3.14159265359
 
 typedef struct s_player{
-	float px;
-	float py;
+	int px;
+	int py;
 	float pdx;
 	float pdy;
 	float pa;
@@ -26,6 +26,7 @@ typedef struct s_window{
 	char **test;
 	mlx_t* mlx;
 	mlx_image_t* img;
+	t_player player;
 } t_window;
 
 #endif
