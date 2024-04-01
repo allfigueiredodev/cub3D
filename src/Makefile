@@ -9,7 +9,7 @@ LIBFT_LIB	:= $(LIBFT)/libft.a
 HEADERS	:= -I ../include -I $(LIBMLX)/include -I $(LIBFT)
 LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 # SRCS	:= $(shell find ./src -iname "*.c")
-SRCS	:= cub3D.c
+SRCS	:= cub3D.c cub3D_utils.c
 OBJS	:= ${SRCS:.c=.o}
 
 all: libmlx $(NAME)
